@@ -1,0 +1,21 @@
+<configuration>
+
+    <!-- 控制台输出 ConsoleAppender -->
+    <appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <layout class="ch.qos.logback.classic.PatternLayout">
+            <Pattern>
+                <!-- %replace: 字符串替换; %caller: 方法调用栈. -->
+                <!-- (\bCaller.+?(?=\()): 正则, 匹配字符串"Caller...(",不含(号 -->
+                %d{yyyy-MM-dd HH:mm:ss.SSS} %-5level %replace(%caller{1}){'(\bCaller.+?(?=\())|\r|\n|\s*|\t', ''} - %msg [%thread] %n
+            </Pattern>
+        </layout>
+    </appender>
+
+    <!-- Per Package Config -->
+    <!--<logger name="com.twitter" level="debug"/>-->
+    <logger name="com.zaxxer" level="ERROR"/>
+    <root level="INFO">
+        <appender-ref ref="STDOUT"/>
+    </root>
+
+</configuration>
